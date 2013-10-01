@@ -13,18 +13,18 @@ import java.sql.DriverManager;
  * @author Rakesh
  */
 public class DBConnection {
-    public int storeInDB (String videoName,String videoDescription,String videoPath) 
-    {
-        
-        System.out.print( "\n\nGot Here..!!\n\n" );
-        
+    
         Connection conn = null;
         String url = "jdbc:mysql://localhost:3306/";
         String dbName = "PCS";
         String driver = "com.mysql.jdbc.Driver";
         String userName = "root"; 
         String password = "root";
-
+    
+    public int storeInDB (String videoName,String videoDescription,String videoPath) 
+    {
+        
+        System.out.print( "\n\nGot Here..!!\n\n" );
         try {
 
                 Class.forName(driver).newInstance();

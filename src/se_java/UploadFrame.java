@@ -59,13 +59,15 @@ public class UploadFrame extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(390, 20, 150, 30);
 
-        jLabel3.setText("Video Name");
+        jLabel3.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jLabel3.setText("Video Title");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(410, 110, 70, 14);
+        jLabel3.setBounds(410, 110, 70, 15);
 
+        jLabel4.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jLabel4.setText("Description");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(410, 150, 70, 14);
+        jLabel4.setBounds(410, 150, 70, 15);
         getContentPane().add(jTextField1);
         jTextField1.setBounds(530, 100, 210, 30);
 
@@ -77,6 +79,7 @@ public class UploadFrame extends javax.swing.JFrame {
         getContentPane().add(jTextField3);
         jTextField3.setBounds(520, 290, 220, 30);
 
+        jButton1.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton1.setText("Browse");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +89,7 @@ public class UploadFrame extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(400, 290, 90, 30);
 
+        jButton2.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton2.setText("Upload");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +106,7 @@ public class UploadFrame extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(530, 140, 210, 110);
 
+        jButton3.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +114,7 @@ public class UploadFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(10, 10, 55, 23);
+        jButton3.setBounds(10, 10, 70, 23);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/corporate_01.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -154,7 +159,10 @@ public class UploadFrame extends javax.swing.JFrame {
                 System.out.println("Destination File----"+destinationFile.getName()+"\n"+destinationFile);
             
                 UploadFrame copyFileExample = new UploadFrame();
+                JOptionPane.showMessageDialog(null, "Uploading takes few Moments of time");
                 copyFileExample.copyFile(sourceFile, destinationFile);
+                
+                //JOptionPane.showMessageDialog(null, "Uploading takes few Moments of time");
             }
             catch (Exception e) 
                 {
@@ -221,7 +229,7 @@ public class UploadFrame extends javax.swing.JFrame {
         
         //String finalpath = MEDIA_Path.toString();
         String finalpath = mediapath.toString();
-        String[] validExtensions = {"avi", "mp4","jar","mp3"};
+        String[] validExtensions = {"avi", "mp4"};
         //for (int i=0; i<validExtensions.length;System.out.print (validExtensions[i++]));
         //String VideoPath =  finalpath.replace("file:/", "file:///");
         //System.out.println(VideoPath);

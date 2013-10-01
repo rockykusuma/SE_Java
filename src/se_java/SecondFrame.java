@@ -63,7 +63,7 @@ public class SecondFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(400, 60, 230, 40);
+        jTextField1.setBounds(350, 60, 250, 40);
 
         jButton2.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton2.setText("Click Here To Upload Video Files");
@@ -83,7 +83,7 @@ public class SecondFrame extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton3.setText("Search Videos");
         getContentPane().add(jButton3);
-        jButton3.setBounds(610, 110, 120, 30);
+        jButton3.setBounds(620, 70, 120, 30);
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
@@ -104,7 +104,7 @@ public class SecondFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //JFrame.DISPOSE_ON_CLOSE;
-        dispose();
+        this.dispose();
         Home.main(null);
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -113,58 +113,9 @@ public class SecondFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
       //   Chooser.main(null);
-        
+        this.dispose();;
         UploadFrame.main(null);
-        
-        /*
-        
-        JFileChooser filechooser = new JFileChooser();
-        int result = filechooser.showOpenDialog(this);
-        String res=null;
-        if(result == JFileChooser.APPROVE_OPTION)
-        {
-           
-          
-                    MEDIA_Path = null;
-            try {
-                MEDIA_Path = filechooser.getSelectedFile().toURL();
-            } catch (MalformedURLException ex) {
-                Logger.getLogger(SecondFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-              
-        }
-        System.out.println(MEDIA_Path);
-        
-        
-        String finalpath = MEDIA_Path.toString();
-        String[] validExtensions = {"avi", "mp4","jar"};
-        //for (int i=0; i<validExtensions.length;System.out.print (validExtensions[i++]));
-        String VideoPath =  finalpath.replace("file:/", "file:///");
-        System.out.println(VideoPath);
-        
-        String extension[]=finalpath.split("\\.");
-	System.out.println("\n\nExtension: "+ extension[extension.length - 1]);
-        int isValid = 0;
-        for (int flag=0;flag<validExtensions.length;flag++) {
-        
-           if(validExtensions[flag].compareToIgnoreCase(extension[extension.length - 1]) == 0) {
-               
-               System.out.print("\n\nMatched");
-               isValid=1;
-               break;
-           }
-           
-        }
-        if (isValid == 0) {
-                JOptionPane.showMessageDialog(null,"FILE NOT SUPPORTED");
-          }
-        else {
-            JOptionPane.showMessageDialog(null, "Storing: \""+VideoPath+"\"");
-            DBConnection objDB = new DBConnection();
-            objDB.storeInDB(VideoPath);
-            
-        }
-        */
+     
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
