@@ -13,7 +13,8 @@ import java.sql.DriverManager;
  * @author Rakesh
  */
 public class DBConnection {
-    public int storeInDB (String videoName,String videoDescription,String videoPath) {
+    public int storeInDB (String videoName,String videoDescription,String videoPath) 
+    {
         
         System.out.print( "\n\nGot Here..!!\n\n" );
         
@@ -46,4 +47,19 @@ public class DBConnection {
         catch(Exception e){System.out.print(e);}
         return 0;
     }
+    
+    public String searchInDB (String Note)       
+    {
+        
+        
+        
+        
+        
+        
+        return null;
+        
+        
+    }
+    
+    
 }

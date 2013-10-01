@@ -55,27 +55,35 @@ public class SecondFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(570, 380, 120, 40);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(350, 320, 230, 40);
+        jButton1.setBounds(570, 380, 120, 30);
 
-        jButton2.setText("Upload Video Files");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1);
+        jTextField1.setBounds(400, 60, 230, 40);
+
+        jButton2.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jButton2.setText("Click Here To Upload Video Files");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(40, 300, 190, 30);
+        jButton2.setBounds(30, 360, 220, 30);
 
         jLabel2.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         jLabel2.setText("                   Predicatabe Convergent Solutions");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(-80, -10, 520, 60);
 
-        jButton3.setText("Search");
+        jButton3.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jButton3.setText("Search Videos");
         getContentPane().add(jButton3);
-        jButton3.setBounds(350, 270, 120, 40);
+        jButton3.setBounds(610, 110, 120, 30);
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
@@ -158,6 +166,19 @@ public class SecondFrame extends javax.swing.JFrame {
         }
         */
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+        
+        String VideoName = jTextField1.getText();
+        
+        DBConnection search = new DBConnection();
+        
+        search.searchInDB(VideoName);
+        
+        
+        
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
