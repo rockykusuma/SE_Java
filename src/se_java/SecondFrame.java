@@ -6,6 +6,10 @@ package se_java;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -82,6 +86,11 @@ public class SecondFrame extends javax.swing.JFrame {
 
         jButton3.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton3.setText("Search Videos");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3);
         jButton3.setBounds(620, 70, 120, 30);
 
@@ -92,7 +101,7 @@ public class SecondFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(30, 90, 310, 180);
+        jScrollPane1.setBounds(30, 90, 290, 200);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/corporate_law.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -121,15 +130,34 @@ public class SecondFrame extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
         
-        String VideoName = jTextField1.getText();
+       // String VideoName = jTextField1.getText();
         
-        DBConnection search = new DBConnection();
+        //DBConnection search = new DBConnection();
         
-        search.searchInDB(VideoName);
+       // search.searchInDB(VideoName);
         
         
         
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+               
+        String SearchLetter =jTextField1.getText();    
+        DBConnection search = new DBConnection();        
+        Hashtable hash1 = search.searchInDB(SearchLetter);
+        
+        //while(!Array1.isEmpty())
+        //{
+            System.out.println("--------------"+hash1.toString());
+        //}
+        
+        
+        SearchFrame.main(hash1);  
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

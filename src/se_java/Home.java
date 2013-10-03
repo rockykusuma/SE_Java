@@ -168,11 +168,16 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-         String args[]= {"file:///D:/Partition2/Music/Videos/video1.mp4" };       
+       // this.dispose();
+         String args= "file:///D:/Partition2/Music/Videos/video1.mp4";
+         
+        // String args= "file:///D:/SE_DATABASE/Videos/Java.mp4";  
          
          // String args[]= {"file:/D:\\Partition2\\Music\\Videos\\video1.mp4" }; 
+         
         MediaPlayer.main(args);
+        
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -184,9 +189,9 @@ public class Home extends javax.swing.JFrame {
     //Stage anotherStage = new Stage();
    //app2.start(anotherStage);
 //   new MediaPlayer().start(new Stage());
-        this.dispose();
+        //this.dispose();
         //System.gc();
-        String args[]= {"file:///D:/Partition2/Music/Videos/video2.mp4" };                
+        String args= "file:///D:/Partition2/Music/Videos/video2.mp4";                
        MediaPlayer.main(args);
        
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -194,21 +199,21 @@ public class Home extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-                 String args[]= {"file:///D:/Partition2/Music/Videos/video3.mp4" };                
+                 String args= "file:///D:/Partition2/Music/Videos/video3.mp4";                
         MediaPlayer.main(args);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-                 String args[]= {"file:///D:/Partition2/Music/Videos/video4.mp4" };                
+                 String args= "file:///D:/Partition2/Music/Videos/video4.mp4";                
         MediaPlayer.main(args);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-                 String args[]= {"file:///D:/Partition2/Music/Videos/video5.mp4" };                
+                 String args= "file:///D:/Partition2/Music/Videos/video5.mp4";                
         MediaPlayer.main(args);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -227,7 +232,7 @@ public class Home extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        String args[]= {"file:///D:/SE_DATABASE/Videos/qwerty.mp4" };                
+        String args= "file:///D:/SE_DATABASE/Videos/qwerty.mp4";                
         MediaPlayer.main(args);
        // file:///D:/Partition1/SE_DATABASE/Videos/▶ Big O Notations_medium.mp4
     }//GEN-LAST:event_jButton9ActionPerformed

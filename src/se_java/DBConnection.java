@@ -7,6 +7,10 @@ package se_java;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
 /**
  *
@@ -46,18 +50,57 @@ public class DBConnection {
         }
         catch(Exception e){System.out.print(e);}
         return 0;
-    }
+    }  
     
-    public String searchInDB (String Note)       
+    
+    public Hashtable searchInDB (String searchkeyword)       
     {
+        String videoName=null;
+        String desc=null;
+        String path=null;
+        String Video[] = new String[5];
+        Hashtable hash=new Hashtable();
+        ArrayList<String> Array =new ArrayList<String>();
         
+        try
+        {
+                Class.forName(driver).newInstance();
+                   
+                conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
+
+                Statement stmd = (Statement) conn.createStatement();
+                
+                ResultSet rs1;
+                
+                rs1 = stmd.executeQuery("SELECT * FROM FILE_PATHS");
+                while(rs1.next())
+                {
+                           videoName=rs1.getString("F_NAME");
+                           
+                           desc=rs1.getString("DESCRIPTION");
+                           path=rs1.getString("F_PATH");
+                           System.out.println("key::::"+videoName);
+                           System.out.println("desc::::"+desc);
+                           System.out.println("path::::"+path);
+                           if(desc.contains(searchkeyword)|| videoName.contains(searchkeyword))
+                           {
+                               String wanted=path;
+                               System.out.println("-------------:"+wanted);
+                               //jComboBox1.addItem(keyword);
+                               hash.put(videoName, wanted);
+                               //Array.add(videoName);
+                           }
+                           
+                 }
         
+               
+        }
         
-        
-        
-        
-        return null;
-        
+        catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e)
+        {
+            
+        }
+      return hash;
         
     }
     

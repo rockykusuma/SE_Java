@@ -27,12 +27,11 @@ public class MediaPlayer extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        if (args.length > 0) {
-            arg1 = args[0];
-        }
-        System.out.println("Kusuma");
+    public static void main(String args) {
+        arg1=args;
+        System.out.println(args+"            sdfgsdfgsdfgsdfg");
         Application.launch(args);
+        
         System.out.println("Kusuma1");
         
         //Home.main(null);

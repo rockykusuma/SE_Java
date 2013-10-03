@@ -154,7 +154,7 @@ public class UploadFrame extends javax.swing.JFrame {
                 // File destinationFile = new File("D:\\SE_DATABASE\\Videos\\" + sourceFile.getName());
                 File destinationFile = new File("D:\\SE_DATABASE\\Videos\\" + VideoName+"."+Temporary);
                 //Destinationpath = "D:\\Partition1\\SE_DATABASE\\Videos\\" + sourceFile.getName();
-                Destinationpath = "D:\\Partition1\\SE_DATABASE\\Videos\\" + VideoName+"."+Temporary;
+                Destinationpath = "D:\\SE_DATABASE\\Videos\\" + VideoName+"."+Temporary;
                 System.out.println("Source File---"+sourceFile.getName());
                 System.out.println("Destination File----"+destinationFile.getName()+"\n"+destinationFile);
             
