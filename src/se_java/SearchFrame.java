@@ -6,6 +6,7 @@ package se_java;
 
 import java.util.Enumeration;
 import java.util.Hashtable;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,18 +21,11 @@ static Hashtable hash123 = new Hashtable();
     public SearchFrame() {
         initComponents();
       Enumeration en=hash123.keys();
-      
-    //  System.out.println("Display result:"); 
-	  
-      // display search result
+
       while (en.hasMoreElements()) {
         // System.out.println(en.nextElement());
          jComboBox1.addItem(en.nextElement());
       }
- 
-        
-        
-
     }
 
     /**
@@ -44,25 +38,19 @@ static Hashtable hash123 = new Hashtable();
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
+        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(770, 460));
         getContentPane().setLayout(null);
 
-        jLabel2.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("                 Search Results");
+        jLabel2.setText("             Search Results");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(100, 20, 210, 30);
-
-        jLabel3.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("     jLabel3");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(50, 100, 90, 20);
+        jLabel2.setBounds(110, 20, 280, 30);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "select" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -71,7 +59,17 @@ static Hashtable hash123 = new Hashtable();
             }
         });
         getContentPane().add(jComboBox1);
-        jComboBox1.setBounds(230, 130, 180, 30);
+        jComboBox1.setBounds(150, 110, 180, 30);
+
+        jButton3.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jButton3.setText("Back");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3);
+        jButton3.setBounds(10, 10, 70, 23);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/corporate_law.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -82,7 +80,7 @@ static Hashtable hash123 = new Hashtable();
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        
+        this.dispose();
         String path = jComboBox1.getSelectedItem().toString();
         System.out.println("CP:"+hash123.get(path));
         if(!path.equals("select"))
@@ -97,6 +95,13 @@ static Hashtable hash123 = new Hashtable();
         
         
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        SecondFrame.main(null);
+
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,6 +130,11 @@ static Hashtable hash123 = new Hashtable();
         }
         //</editor-fold>
         
+        
+       JButton button1 = new JButton();      
+       button1.setText("fsdff");
+       // jLabel1.add(button1);
+        
        hash123 = (Hashtable)hash.clone();
         
         System.out.println(hash123.toString());
@@ -137,9 +147,9 @@ static Hashtable hash123 = new Hashtable();
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
