@@ -48,7 +48,7 @@ public class SecondFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(751, 470));
+        setMinimumSize(new java.awt.Dimension(768, 470));
         getContentPane().setLayout(null);
 
         jButton1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N

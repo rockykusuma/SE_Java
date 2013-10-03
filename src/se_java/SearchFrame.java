@@ -22,8 +22,9 @@ static Hashtable hash123 = new Hashtable();
         initComponents();
       Enumeration en=hash123.keys();
 
-      while (en.hasMoreElements()) {
-        // System.out.println(en.nextElement());
+      while (en.hasMoreElements()) 
+      {
+
          jComboBox1.addItem(en.nextElement());
       }
     }
@@ -43,14 +44,14 @@ static Hashtable hash123 = new Hashtable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(770, 460));
+        setMinimumSize(new java.awt.Dimension(768, 470));
         getContentPane().setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("             Search Results");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(110, 20, 280, 30);
+        jLabel2.setBounds(80, 20, 280, 30);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "select" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -69,11 +70,11 @@ static Hashtable hash123 = new Hashtable();
             }
         });
         getContentPane().add(jButton3);
-        jButton3.setBounds(10, 10, 70, 23);
+        jButton3.setBounds(10, 20, 70, 23);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/corporate_law.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 751, 440);
+        jLabel1.setBounds(0, 0, 760, 440);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
