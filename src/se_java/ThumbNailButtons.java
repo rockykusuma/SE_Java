@@ -29,7 +29,7 @@ public class ThumbNailButtons extends JFrame
           {
               public void actionPerformed(ActionEvent e)
               {
-                 System.exit(0);
+                 //System.exit(0);
                   HomePage.main(null);
                   
               }
