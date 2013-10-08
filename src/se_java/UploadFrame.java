@@ -5,10 +5,7 @@
 package se_java;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.apache.commons.io.FileUtils;
@@ -208,23 +205,24 @@ public class UploadFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-         JFileChooser filechooser = new JFileChooser();
+        JFileChooser filechooser = new JFileChooser();
         int result = filechooser.showOpenDialog(this);
         String res=null;
         if(result == JFileChooser.APPROVE_OPTION)
         {
-                    MEDIA_Path = null;
-            try {
-                MEDIA_Path = filechooser.getSelectedFile().toURL();
+
                 mediapath = filechooser.getSelectedFile().toString();
-            } 
-            catch (MalformedURLException ex) 
-            {
-                Logger.getLogger(SecondFrame.class.getName()).log(Level.SEVERE, null, ex);
-            }
-              
+
         }
-        System.out.println(MEDIA_Path);
+        
+        else
+        {
+           
+            System.out.println("File Not Selected");
+        }
+        System.out.println("URL PATH-------------"+MEDIA_Path);
+        System.out.println("ABSOLUTE PATH----------------------"+filechooser.getSelectedFile().getAbsolutePath());
+         System.out.println("String PATH----------------------"+mediapath);
         
         
         //String finalpath = MEDIA_Path.toString();
@@ -267,7 +265,7 @@ public class UploadFrame extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        SecondFrame.main(null);
+        HomePage.main(null);
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
