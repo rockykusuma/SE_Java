@@ -62,7 +62,8 @@ public class StartApplication extends javax.swing.JFrame {
         // TODO add your handling code here:
         //JFrame.DISPOSE_ON_CLOSE;
         dispose();
-        SecondFrame.main(null);
+        HomePage.main(null);
+        
         
         
     }//GEN-LAST:event_jButton1ActionPerformed

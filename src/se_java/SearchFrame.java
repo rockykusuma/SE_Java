@@ -53,7 +53,7 @@ static Hashtable hash123 = new Hashtable();
         getContentPane().add(jLabel2);
         jLabel2.setBounds(80, 20, 280, 30);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "select" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Results" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -84,7 +84,7 @@ static Hashtable hash123 = new Hashtable();
         this.dispose();
         String path = jComboBox1.getSelectedItem().toString();
         System.out.println("CP:"+hash123.get(path));
-        if(!path.equals("select"))
+        if(!path.equals("Results"))
         {
              MediaPlayer.main((String) hash123.get(path));
             
@@ -92,6 +92,7 @@ static Hashtable hash123 = new Hashtable();
         
         else
             JOptionPane.showMessageDialog(null, "Select Properly");
+            
         
         
         
@@ -100,7 +101,7 @@ static Hashtable hash123 = new Hashtable();
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        SecondFrame.main(null);
+        HomePage.main(null);
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
