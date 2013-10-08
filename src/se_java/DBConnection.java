@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Vector;
 
 /**
  *
@@ -19,7 +20,7 @@ import java.util.Hashtable;
 public class DBConnection {
     
         Connection conn = null;
-        String url = "jdbc:mysql://localhost:3306/";
+        String url = "jdbc:mysql://127.0.0.1:3306/";
         String dbName = "PCS";
         String driver = "com.mysql.jdbc.Driver";
         String userName = "root"; 
@@ -60,7 +61,7 @@ public class DBConnection {
         String path=null;
         String Video[] = new String[5];
         Hashtable hash=new Hashtable();
-        ArrayList<String> Array =new ArrayList<String>();
+     //   ArrayList<String> Array =new ArrayList<String>();
         
         try
         {
@@ -103,6 +104,39 @@ public class DBConnection {
       return hash;
         
     }
+
+    public Hashtable thumbCount() 
+    {
+        String path=null;
+        int Count =0;
+        Hashtable hash=new Hashtable();
+        try {
+
+               
+                Class.forName(driver).newInstance();
+                   
+                conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
+
+                Statement stmd = (Statement) conn.createStatement();
+                
+                ResultSet rs1;
+                
+                rs1 = stmd.executeQuery("SELECT * FROM FILE_PATHS");
+                while(rs1.next())
+                {
+                    path=rs1.getString("F_PATH");
+                    Count++;
+                    hash.put(Count, path);
+                }
+                
+                System.out.println(Count);
+                
+        
+               
+        }
+        catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e){System.out.print(e);}
+            return hash;
+        
     
-    
+    }
 }
