@@ -4,28 +4,23 @@
  */
 package se_java;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author Rakesh
  */
-public class SecondFrame extends javax.swing.JFrame {
+public class HomePage extends javax.swing.JFrame {
 
    
     /**
-     * Creates new form SecondFrame
+     * Creates new form HomePage
      */
-    public SecondFrame() {
+    public HomePage() {
         initComponents();
     }
 
@@ -111,10 +106,18 @@ public class SecondFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //JFrame.DISPOSE_ON_CLOSE;
-        this.dispose();
-        Home.main(null);
+    
+            // TODO add your handling code here:
+            //JFrame.DISPOSE_ON_CLOSE;
+            this.dispose();
+            //Thumbnails.main(null);
+         
+                   DBConnection Count = new DBConnection();     
+                   Hashtable hashThumb =  Count.thumbCount();               
+                   Enumeration en=hashThumb.keys();
+                   int nob=0;
+                   System.out.println("size"+hashThumb.size());
+                    new ThumbNailButtons( hashThumb).setVisible( true );  
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -142,7 +145,7 @@ public class SecondFrame extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-               
+               this.dispose();
         String SearchLetter =jTextField1.getText();    
         DBConnection search = new DBConnection();        
         Hashtable hash1 = search.searchInDB(SearchLetter);
@@ -175,21 +178,15 @@ public class SecondFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SecondFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SecondFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SecondFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SecondFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SecondFrame().setVisible(true);
+                new HomePage().setVisible(true);
             }
         });
     }

@@ -1,5 +1,8 @@
  package se_java;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
@@ -9,7 +12,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -80,7 +85,7 @@ public class MediaControl extends BorderPane {
     public MediaControl(final MediaPlayer mp) {
         this.mp = mp;
         setId("mediaControl");
-        
+        //Group root = new Group();
         mediaView = new MediaView(mp);
         Pane mvPane = new Pane();
         mvPane.getChildren().add(mediaView);
@@ -91,8 +96,26 @@ public class MediaControl extends BorderPane {
         mediaBar.setAlignment(Pos.CENTER);
         mediaBar.setPadding(new Insets(5, 10, 5, 10));
         BorderPane.setAlignment(mediaBar, Pos.CENTER);
-
+        //final Timeline slideIn = new Timeline();
+        //final Timeline slideOut = new Timeline();
         final Button playButton = new Button(">");
+        
+        /*
+         root.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                slideOut.play();
+            }
+        });
+        root.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                slideIn.play();
+            }
+        });
+        
+        */
+        
         playButton.setOnAction(new EventHandler<ActionEvent>() {
 
             public void handle(ActionEvent e) {
@@ -155,6 +178,32 @@ public class MediaControl extends BorderPane {
             public void run() {
                 duration = mp.getMedia().getDuration();
                 updateValues();
+               
+           /*     
+                int w = mp.getMedia().getWidth();
+                int h = mp.getMedia().getHeight();
+                
+                 slideOut.getKeyFrames().addAll(
+                        new KeyFrame(new Duration(0),
+                                new KeyValue(mediaBar.translateYProperty(), h-100),
+                                new KeyValue(mediaBar.opacityProperty(), 0.9)
+                        ),
+                        new KeyFrame(new Duration(300),
+                                new KeyValue(mediaBar.translateYProperty(), h),
+                                new KeyValue(mediaBar.opacityProperty(), 0.0)
+                        )
+                );
+                slideIn.getKeyFrames().addAll(
+                        new KeyFrame(new Duration(0),
+                                new KeyValue(mediaBar.translateYProperty(), h),
+                                new KeyValue(mediaBar.opacityProperty(), 0.0)
+                                ),
+                        new KeyFrame(new Duration(300),
+                                new KeyValue(mediaBar.translateYProperty(), h-100),
+                                new KeyValue(mediaBar.opacityProperty(), 0.9)
+                                )
+                );
+     */
             }
         });
 
