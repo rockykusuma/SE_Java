@@ -74,12 +74,6 @@ public class DiscussionPanel_Server extends javax.swing.JFrame {
                         Logger.getLogger(DiscussionPanel_Server.class.getName()).log(Level.SEVERE, null, ex);
                     }
 	}
-        
-        
-
-    
-    
-  
     
     /**
      * This method is called from within the constructor to initialize the form.
