@@ -4,6 +4,7 @@
  */
 package se_java;
 
+import DiscussionForum.ChatForum;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -40,6 +41,7 @@ public class HomePage extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,6 +99,16 @@ public class HomePage extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(30, 90, 290, 200);
+
+        jButton4.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jButton4.setText("Discussion Forum");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(30, 400, 220, 23);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/corporate_law.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -162,6 +174,12 @@ public class HomePage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        ChatForum.main(null);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -194,6 +212,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

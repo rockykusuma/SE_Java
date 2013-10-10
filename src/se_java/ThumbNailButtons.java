@@ -5,11 +5,6 @@ import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
 import static javax.swing.Action.NAME;
-  
-
-
-
-
 
 public class ThumbNailButtons extends JFrame  
 {  
