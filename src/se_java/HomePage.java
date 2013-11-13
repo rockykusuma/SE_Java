@@ -4,12 +4,8 @@
  */
 package se_java;
 
-import DiscussionForum.ChatForum;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Enumeration;
 import java.util.Hashtable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -177,7 +173,7 @@ public class HomePage extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        ChatForum.main(null);
+        DiscussionPanel.main(null);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

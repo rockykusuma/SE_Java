@@ -4,9 +4,6 @@
  */
 package se_java;
 
-import MoviePlayer.MoviePlayer;
-import javafx.stage.Stage;
-
 /**
  *
  * @author Rakesh
@@ -177,7 +174,7 @@ public class Thumbnails extends javax.swing.JFrame {
          // String args[]= {"file:/D:\\Partition2\\Music\\Videos\\video1.mp4" }; 
          
        // MediaPlayer.main(args);
-        MoviePlayer.main(args);
+       // MoviePlayer.main(args);
         
         
         

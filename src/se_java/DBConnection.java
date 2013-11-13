@@ -9,9 +9,9 @@ import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,14 +23,38 @@ public class DBConnection {
         String url = "jdbc:mysql://127.0.0.1:3306/";
         String dbName = "PCS";
         String driver = "com.mysql.jdbc.Driver";
-        String userName = "root"; 
-        String password = "root";
+        String userName = "rakesh"; 
+        String password = "rakesh";
+        
+        
+     public  boolean DBConnection()
+     {
+        
+        try{
+            System.out.println("kjsgfkja");            
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+                   
+               Connection conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
+
+                Statement stmd = (Statement) conn.createStatement();
+                stmd.execute ("select 1 from dual");
+            System.out.println("kjsgfkja");    
+
+            }
+            catch(Exception e)
+            {
+
+                return false;
+            }
+        return true;
+    }
     
     public int storeInDB (String videoName,String videoDescription,String videoPath) 
     {
         
         System.out.print( "\n\nGot Here..!!\n\n" );
-        try {
+        try 
+        {
 
                 Class.forName(driver).newInstance();
                    
@@ -49,7 +73,9 @@ public class DBConnection {
                 conn.close();
                 return 1;
         }
-        catch(Exception e){System.out.print(e);}
+        catch(Exception e){
+        
+        }
         return 0;
     }  
     
@@ -61,7 +87,7 @@ public class DBConnection {
         String path=null;
         String Video[] = new String[5];
         Hashtable hash=new Hashtable();
-     //   ArrayList<String> Array =new ArrayList<String>();
+     // ArrayList<String> Array =new ArrayList<String>();
         
         try
         {
@@ -83,7 +109,7 @@ public class DBConnection {
                            System.out.println("key::::"+videoName);
                            System.out.println("desc::::"+desc);
                            System.out.println("path::::"+path);
-                           if(desc.contains(searchkeyword)|| videoName.contains(searchkeyword))
+                           if(desc.contains(searchkeyword)|| videoName.equalsIgnoreCase(searchkeyword))
                            {
                                String wanted=path;
                                System.out.println("-------------:"+wanted);
@@ -93,8 +119,7 @@ public class DBConnection {
                            }
                            
                  }
-        
-               
+                     
         }
         
         catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e)
@@ -130,13 +155,62 @@ public class DBConnection {
                 }
                 
                 System.out.println(Count);
-                
-        
-               
+      
         }
         catch(ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e){System.out.print(e);}
             return hash;
-        
-    
+         
     }
+
+    public void StoreinForum(String discussionString) throws  SQLException 
+    {
+            try {
+                Class.forName(driver).newInstance();
+                   
+                conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
+
+                Statement stmd = (Statement) conn.createStatement();
+
+                String command = "CREATE TABLE IF NOT EXISTS Forum(ForumData VARCHAR(100))";
+                
+                stmd.execute (command);
+
+               command = "insert into Forum values('"+discussionString+"')" ;                
+                 stmd.execute (command);
+                
+                
+            } 
+            catch (Exception ex) {
+             
+            }
+            
+        
+    }
+
+    public String searchInForum() throws ClassNotFoundException, SQLException {
+            try {
+                        Class.forName(driver).newInstance();                          
+                        conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
+                        Statement stmd = (Statement) conn.createStatement();                       
+                        ResultSet rs1;                        
+                        rs1 = stmd.executeQuery("SELECT * FROM forum");
+                        String Global="";
+                        while(rs1.next())
+                        {
+                             Global = Global+"\n"+rs1.getString("ForumData");
+                             
+                        }
+                
+            return Global;
+            } catch (    InstantiationException | IllegalAccessException ex) {
+                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return null;
+       
+    }
+    
+    
+    
+    
+    
 }

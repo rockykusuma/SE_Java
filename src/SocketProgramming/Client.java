@@ -1,6 +1,6 @@
 /*
  * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * and open the template in the editor. 
  */
 package SocketProgramming;
 
@@ -17,7 +17,7 @@ public class Client
         
 	public static void main(String args[])throws IOException
 	{
-		s_Client=new Socket("localhost",102);
+		s_Client=new Socket("172.16.6.153",102);
 		kb_Client=new BufferedReader(new InputStreamReader(System.in));
 		ps_Client=new PrintStream(s_Client.getOutputStream());
 		ser_Client=new BufferedReader(new InputStreamReader(s_Client.getInputStream()));
