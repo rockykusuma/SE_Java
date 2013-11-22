@@ -21,7 +21,7 @@ public class MediaPlayer extends Application {
         mediaPlayer.setAutoPlay(true);
         MediaControl mediaControl = new MediaControl(mediaPlayer);
         scene.setRoot(mediaControl);
-        scene.getStylesheets().add(MediaPlayer.class.getResource("mediaplayer.css").toExternalForm());
+      //  scene.getStylesheets().add(MediaPlayer.class.getResource("mediaplayer.css").toExternalForm());
         // show stage
         stage.setScene(scene);
         stage.show();
