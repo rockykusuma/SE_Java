@@ -31,7 +31,8 @@ class SomeAction extends AbstractAction
         System.out.println(str);
        // System.out.println("-----------------"+str.substring(16));   
         //String args = str.substring(str.indexOf(":")+1)     
-        MediaPlayer.main(str);
+        VideoResults.main((String) getValue( NAME ),str);
+        //MediaPlayer.main(str);
         
         
     }  

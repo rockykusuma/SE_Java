@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author Rakesh
  */
-public class DBConnection {
+public class DBConnection2 {
     
         Connection conn = null;
         String url = "jdbc:mysql://127.0.0.1:3306/";
