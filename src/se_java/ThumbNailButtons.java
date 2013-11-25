@@ -30,8 +30,10 @@ class SomeAction extends AbstractAction
         String str = "file:///D:/SE_DATABASE/Videos/"+(String) getValue( NAME );    
         System.out.println(str);
        // System.out.println("-----------------"+str.substring(16));   
-        //String args = str.substring(str.indexOf(":")+1)     
+        //String args = str.substring(str.indexOf(":")+1)  
+        
         VideoResults.main((String) getValue( NAME ),str);
+        
         //MediaPlayer.main(str);
         
         

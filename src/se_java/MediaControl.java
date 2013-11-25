@@ -40,6 +40,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -49,6 +50,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class MediaControl extends BorderPane {
@@ -63,6 +65,9 @@ public class MediaControl extends BorderPane {
     private CheckBox repeatBox;  
     private Slider volumeSlider;
     private HBox mediaBar;
+    private Pane mvPane;
+    private Stage newStage;
+    private boolean fullScreen = false;
 
     @Override
     protected void layoutChildren() {
@@ -113,7 +118,7 @@ public class MediaControl extends BorderPane {
         setId("mediaControl");
         
         mediaView = new MediaView(mp);
-        Pane mvPane = new Pane();
+        final Pane mvPane = new Pane();
         mvPane.getChildren().add(mediaView);
         mvPane.setId("mediaViewPane");
         setCenter(mvPane);
@@ -238,6 +243,68 @@ public class MediaControl extends BorderPane {
         playTime.setMinWidth(50);
         mediaBar.getChildren().add(playTime);
 
+        
+        
+        
+        //Fullscreen button
+            
+            Button buttonFullScreen = ButtonBuilder.create()
+                    .text("Full Screen")
+                    .minWidth(Control.USE_PREF_SIZE)
+                    .build();
+            
+            buttonFullScreen.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    if (!fullScreen){
+                    newStage = new Stage();
+                    newStage.fullScreenProperty().addListener(new ChangeListener<Boolean>() {
+                        @Override public void changed(ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
+                            onFullScreen(); 
+                        }
+                    });
+                    final BorderPane borderPane = new BorderPane(){
+                        @Override protected void layoutChildren(){
+                            if (mediaView != null && getBottom() != null) {
+                                    mediaView.setFitWidth(getWidth());
+                                    mediaView.setFitHeight(getHeight() - getBottom().prefHeight(-1));
+                            }
+                            super.layoutChildren();
+                            if (mediaView != null) {
+                                mediaView.setTranslateX((((Pane)getCenter()).getWidth() - mediaView.prefWidth(-1)) / 2);
+                                mediaView.setTranslateY((((Pane)getCenter()).getHeight() - mediaView.prefHeight(-1)) / 2);
+                            }
+                        };
+                    };
+                   
+                    setCenter(null);
+                    setBottom(null);
+                    borderPane.setCenter(mvPane);
+                    borderPane.setBottom(mediaBar);
+                    
+                    Scene newScene = new Scene(borderPane);
+                    newStage.setScene(newScene);
+                    //Workaround for disposing stage when exit fullscreen
+                    newStage.setX(-100000);
+                    newStage.setY(-100000);
+                    
+                    newStage.setFullScreen(true);
+                    fullScreen = true;
+                    newStage.show();
+                    
+                }
+                    else{
+                        //toggle FullScreen
+                        fullScreen = false;
+                        newStage.setFullScreen(false);
+                        
+                    }
+                }
+                
+            });
+            mediaBar.getChildren().add(buttonFullScreen);
+
+        
         Label volumeLabel = new Label("Vol: ");
         volumeLabel.setMinWidth(Control.USE_PREF_SIZE);
         mediaBar.getChildren().add(volumeLabel);
@@ -269,6 +336,23 @@ public class MediaControl extends BorderPane {
         setBottom(mediaBar);
     }
 
+    
+            protected void onFullScreen(){
+            if (!newStage.isFullScreen()){
+                
+                fullScreen = false;
+                setCenter(mvPane);
+                setBottom(mediaBar);
+                Platform.runLater(new Runnable() {
+                    @Override public void run() {
+                        newStage.close();
+                        }
+                    });
+                
+            }
+        }
+    
+    
     protected void updateValues() {
         if (playTime != null && timeSlider != null && volumeSlider != null) {
             Platform.runLater(new Runnable() {
