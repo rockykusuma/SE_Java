@@ -10,8 +10,14 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.scene.image.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -31,7 +37,7 @@ public class ShowVideos extends javax.swing.JFrame {
 //        
 //        
 //    }
-    public ShowVideos( Hashtable  hash )  
+    public ShowVideos( Hashtable  hash ) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException  
     {  
         initComponents();
         System.out.println("Testing 123");
@@ -60,7 +66,16 @@ public class ShowVideos extends javax.swing.JFrame {
             TempFinal = temp.substring(temp.indexOf("os/")+3);
             //JButton button = new JButton( new SomeAction( "Video" , i ,hash)  );  
             
-            JButton button = new JButton( new SomeAction( "" ,TempFinal)  );  
+            JButton button = new JButton( new SomeAction( "" ,TempFinal)  );
+            
+            DBConnection image = new DBConnection();
+         //   image.GetImage();
+            
+          //  byte[] imagedata = image.GetImage((String) hash.get(i));
+            //java.awt.Image img = Toolkit.getDefaultToolkit().createImage(imagedata);
+       //     ImageIcon icon =new ImageIcon(img);
+//JLabel lPhoto = new JLabel(icon) ; 
+           // button.setIcon(icon);
             button.setPreferredSize(new Dimension(100, 100));
             jLabel1.add( button );  
             // Remember buttons in collection, we might need to access them sometime  
@@ -149,7 +164,17 @@ public class ShowVideos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ShowVideos(hash).setVisible(true);
+                try {
+                    new ShowVideos(hash).setVisible(true);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ShowVideos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(ShowVideos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(ShowVideos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ShowVideos.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

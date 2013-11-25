@@ -7,6 +7,7 @@ package se_java;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 import java.io.FileInputStream;
+import java.sql.Blob;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,13 +64,20 @@ public class DBConnection {
 
                 Statement stmd = (Statement) conn.createStatement();
                 
+             
                 FileInputStream fin = new FileInputStream(imagePath);
-
                 String command = "CREATE TABLE IF NOT EXISTS FILE_PATHS(F_NAME VARCHAR(50) PRIMARY KEY, F_PATH VARCHAR(100), DESCRIPTION VARCHAR(100), IMAGE BLOB)";
                 
                 stmd.execute (command);
 
-                command = command = "insert into FILE_PATHS values('"+videoName+"', '" + videoPath + "','"+videoDescription+"')" ;
+                command = command = "insert into FILE_PATHS values('"+videoName+"', '" + videoPath + "','"+videoDescription+"','"+fin+"')" ;
+                
+               
+		
+
+		//int result = stmd.executeUpdate();
+		//System.out.println(result + " Record Successfully Inserted");
+
                 
                 stmd.execute (command);
 
@@ -209,6 +217,33 @@ public class DBConnection {
             }
             return null;
        
+    }
+
+    byte[] GetImage(String imghash) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException
+    {
+        
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
+        Class.forName(driver).newInstance();                          
+                        conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
+                        Statement stmd = (Statement) conn.createStatement();
+                        ResultSet rs = stmd.executeQuery( "select image from file_paths where f_path='imghash'") ;
+                        if(rs.next())
+                        {
+            System.out.println("BLOB");
+                       
+                                Blob b= rs.getBlob("image");
+                                 int blobLength = (int) b.length();
+
+           byte[] imagdata = b.getBytes(1, blobLength);
+
+                         
+                        
+                        return imagdata;
+                        }
+            return null;
+
+        
     }
     
     
