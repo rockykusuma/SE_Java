@@ -1,34 +1,79 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- * Rakesh Kusuma and Sashank Sarma
- * PCS
  */
+
 package se_java;
 
+import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import javax.swing.JButton;
 
 /**
  *
  * @author Rakesh
  */
-public class StartApplication extends javax.swing.JFrame {
+public class ShowVideos extends javax.swing.JFrame {
 
     /**
-     * Creates new form StartApplication
+     * Creates new form ShowVideos
      */
-    public StartApplication() {
+    final java.util.List<JButton> buttons;
+    
+//    public ShowVideos() {
+//        
+//        
+//        
+//        
+//    }
+    public ShowVideos( Hashtable  hash )  
+    {  
         initComponents();
+        System.out.println("Testing 123");
+        //super("PCS Videos");   
+    //    JFrame.setDefaultLookAndFeelDecorated(true);
         
-        Toolkit tool = Toolkit.getDefaultToolkit();
-        Dimension dim = new Dimension(tool.getScreenSize());
-        int height = (int) dim.getHeight();
-        int width = (int) dim.getWidth();
-        setSize(width, height);
-        setLocation(width / 2 - getWidth() / 2, height / 2 - getHeight() / 2);
+      //  setDefaultCloseOperation( DISPOSE_ON_CLOSE );
+        setLocationRelativeTo(null);
+        int numberOfButtons = hash.size();
+        Container pane = getContentPane();
+        setLayout(new BorderLayout());
+       // JLabel background = new JLabel(new ImageIcon("‪C:\\Users\\Rakesh\\Desktop\\ron0a.jpg"));
+        //add(background);
         
-    }
+       //pane.setBackground(Color.yellow);
+       // pane.
+       
+       
+       jLabel1.setLayout( new FlowLayout() );   
+        buttons = new ArrayList<>( numberOfButtons );                   
+        for ( int i = 1; i <= numberOfButtons; i++ )  
+        {  
+            System.out.println(hash.get(i));
+            String temp = (String) hash.get(i);
+            String TempFinal;
+            TempFinal = temp.substring(temp.indexOf("os/")+3);
+            //JButton button = new JButton( new SomeAction( "Video" , i ,hash)  );  
+            
+            JButton button = new JButton( new SomeAction( "" ,TempFinal)  );  
+            button.setPreferredSize(new Dimension(100, 100));
+            jLabel1.add( button );  
+            // Remember buttons in collection, we might need to access them sometime  
+            buttons.add( button );  
+        }  
+        
+        
+        pack();  
+    }  
+  
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,25 +89,24 @@ public class StartApplication extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(770, 450));
+        setMinimumSize(new java.awt.Dimension(751, 451));
         getContentPane().setLayout(null);
 
-        jButton1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        jButton1.setText("Go");
+        jButton1.setText("Home");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(600, 360, 120, 40);
+        jButton1.setBounds(10, 70, 100, 23);
 
         jLabel2.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
-        jLabel2.setText("                   Predicatabe Convergent Solutions");
+        jLabel2.setText("          PCS   Videos");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(80, 20, 520, 60);
+        jLabel2.setBounds(0, 0, 250, 60);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/picture1.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/corporate_law.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 750, 450);
 
@@ -71,18 +115,14 @@ public class StartApplication extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //JFrame.DISPOSE_ON_CLOSE;
-        dispose();
+        this.dispose();
         HomePage.main(null);
-        
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(final Hashtable  hash) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -96,23 +136,24 @@ public class StartApplication extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StartApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowVideos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StartApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowVideos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StartApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowVideos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StartApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ShowVideos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StartApplication().setVisible(true);
+                new ShowVideos(hash).setVisible(true);
             }
         });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

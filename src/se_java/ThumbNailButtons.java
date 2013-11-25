@@ -8,47 +8,8 @@ import static javax.swing.Action.NAME;
 
 public class ThumbNailButtons extends JFrame  
 {  
-    final java.util.List<JButton> buttons;  
+  
      
-    public ThumbNailButtons( Hashtable  hash )  
-    {  
-        
-        super("PCS Videos");   
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        
-        setDefaultCloseOperation( DISPOSE_ON_CLOSE );
-        int numberOfButtons = hash.size();
-        Container pane = getContentPane();
-        JButton back = new JButton("back");
-        back.addActionListener (new ActionListener()
-          {
-              public void actionPerformed(ActionEvent e)
-              {
-                 //System.exit(0);
-                  HomePage.main(null);
-                  
-              }
-              
-          });
-        pane.add(back);
-        pane.setLayout( new GridLayout( 4, 2 ) );   
-        buttons = new ArrayList<>( numberOfButtons );                   
-        for ( int i = 1; i <= numberOfButtons; i++ )  
-        {  
-            String temp = (String) hash.get(i);
-            String TempFinal;
-            TempFinal = temp.substring(temp.indexOf("os/")+3);
-            //JButton button = new JButton( new SomeAction( "Video" , i ,hash)  );  
-            
-            JButton button = new JButton( new SomeAction( "" ,TempFinal)  ); 
-            pane.add( button );  
-            // Remember buttons in collection, we might need to access them sometime  
-            buttons.add( button );  
-        }  
-        
-        
-        pack();  
-    }  
 }  
 class SomeAction extends AbstractAction  
 {  

@@ -6,6 +6,7 @@ package se_java;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
+import java.io.FileInputStream;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,7 +50,7 @@ public class DBConnection {
         return true;
     }
     
-    public int storeInDB (String videoName,String videoDescription,String videoPath) 
+    public int storeInDB (String videoName,String videoDescription,String videoPath,String imagePath) 
     {
         
         System.out.print( "\n\nGot Here..!!\n\n" );
@@ -61,8 +62,10 @@ public class DBConnection {
                 conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
 
                 Statement stmd = (Statement) conn.createStatement();
+                
+                FileInputStream fin = new FileInputStream(imagePath);
 
-                String command = "CREATE TABLE IF NOT EXISTS FILE_PATHS(F_NAME VARCHAR(50) PRIMARY KEY, F_PATH VARCHAR(100), DESCRIPTION VARCHAR(100))";
+                String command = "CREATE TABLE IF NOT EXISTS FILE_PATHS(F_NAME VARCHAR(50) PRIMARY KEY, F_PATH VARCHAR(100), DESCRIPTION VARCHAR(100), IMAGE BLOB)";
                 
                 stmd.execute (command);
 
@@ -87,8 +90,7 @@ public class DBConnection {
         String path=null;
         String Video[] = new String[5];
         Hashtable hash=new Hashtable();
-     // ArrayList<String> Array =new ArrayList<String>();
-        
+        int Count =0;
         try
         {
                 Class.forName(driver).newInstance();
@@ -111,11 +113,10 @@ public class DBConnection {
                            System.out.println("path::::"+path);
                            if(desc.contains(searchkeyword)|| videoName.equalsIgnoreCase(searchkeyword))
                            {
-                               String wanted=path;
-                               System.out.println("-------------:"+wanted);
-                               //jComboBox1.addItem(keyword);
-                               hash.put(videoName, wanted);
-                               //Array.add(videoName);
+                               //String wanted=path;
+                               Count++;
+                               System.out.println("-------------:"+path);
+                               hash.put(Count, path);
                            }
                            
                  }
@@ -126,6 +127,7 @@ public class DBConnection {
         {
             
         }
+        System.out.println("qwewrwrwrqwrqw" + hash.size());
       return hash;
         
     }

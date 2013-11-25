@@ -19,10 +19,11 @@ public class MediaPlayer extends Application {
         Media media = new Media((arg1 != null) ? arg1 : MEDIA_URL);
         javafx.scene.media.MediaPlayer mediaPlayer = new javafx.scene.media.MediaPlayer(media);
         mediaPlayer.setAutoPlay(true);
+       // MC1.mains(mediaPlayer);
         MediaControl mediaControl = new MediaControl(mediaPlayer);
         scene.setRoot(mediaControl);
-      //  scene.getStylesheets().add(MediaPlayer.class.getResource("mediaplayer.css").toExternalForm());
-        // show stage
+        scene.getStylesheets().add(MediaPlayer.class.getResource("mediaplayer.css").toExternalForm());
+        //show stage
         stage.setScene(scene);
         stage.show();
     }

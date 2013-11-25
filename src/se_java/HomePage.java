@@ -114,18 +114,17 @@ public class HomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
-            // TODO add your handling code here:
-            //JFrame.DISPOSE_ON_CLOSE;
+
             this.dispose();
-            //Thumbnails.main(null);
-         
+
                    DBConnection Count = new DBConnection();     
                    Hashtable hashThumb =  Count.thumbCount();               
-                   Enumeration en=hashThumb.keys();
+
                    int nob=0;
                    System.out.println("size"+hashThumb.size());
-                    new ThumbNailButtons( hashThumb).setVisible( true );  
+ 
+                    ShowVideos.main(hashThumb);
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -139,15 +138,7 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-        
-       // String VideoName = jTextField1.getText();
-        
-        //DBConnection search = new DBConnection();
-        
-       // search.searchInDB(VideoName);
-        
-        
+
         
     }//GEN-LAST:event_jTextField1ActionPerformed
 
@@ -157,15 +148,11 @@ public class HomePage extends javax.swing.JFrame {
         String SearchLetter =jTextField1.getText();    
         DBConnection search = new DBConnection();        
         Hashtable hash1 = search.searchInDB(SearchLetter);
-        
-        //while(!Array1.isEmpty())
-        //{
             System.out.println("--------------"+hash1.toString());
-        //}
-        
-        
-        SearchFrame.main(hash1);  
-        
+                System.out.println(hash1.get(0));
+                System.out.println("size"+hash1.size());
+       // SearchFrame.main(hash1);  
+        ShowVideos.main(hash1);
         
         
     }//GEN-LAST:event_jButton3ActionPerformed

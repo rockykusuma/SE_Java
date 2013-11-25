@@ -5,6 +5,7 @@
 package se_java;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.net.URL;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -18,12 +19,14 @@ public class UploadFrame extends javax.swing.JFrame {
 
     public static URL MEDIA_Path;
     public static String mediapath;
+    public static String ImagePath;
     /**
      * Creates new form UploadFrame
      */
     public UploadFrame() {
         initComponents();
         jTextField3.setVisible(false);
+        jTextField4.setVisible(false);
     }
 
     /**
@@ -45,6 +48,10 @@ public class UploadFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,14 +66,14 @@ public class UploadFrame extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jLabel3.setText("Video Title");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(410, 110, 70, 15);
+        jLabel3.setBounds(410, 80, 70, 15);
 
         jLabel4.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jLabel4.setText("Description");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(410, 150, 70, 15);
+        jLabel4.setBounds(410, 140, 70, 15);
         getContentPane().add(jTextField1);
-        jTextField1.setBounds(530, 100, 210, 30);
+        jTextField1.setBounds(520, 80, 220, 30);
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,17 +81,17 @@ public class UploadFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextField3);
-        jTextField3.setBounds(520, 290, 220, 30);
+        jTextField3.setBounds(520, 340, 230, 30);
 
         jButton1.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
-        jButton1.setText("Browse");
+        jButton1.setText("File Location");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(400, 290, 90, 30);
+        jButton1.setBounds(400, 340, 110, 30);
 
         jButton2.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton2.setText("Upload");
@@ -94,14 +101,14 @@ public class UploadFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(490, 340, 130, 50);
+        jButton2.setBounds(610, 380, 130, 50);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(530, 140, 210, 110);
+        jScrollPane1.setBounds(520, 120, 220, 110);
 
         jButton3.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton3.setText("Back");
@@ -112,6 +119,33 @@ public class UploadFrame extends javax.swing.JFrame {
         });
         getContentPane().add(jButton3);
         jButton3.setBounds(10, 10, 70, 23);
+
+        jLabel5.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jLabel5.setText("ThumbNail Image");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(400, 260, 110, 15);
+
+        jButton4.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
+        jButton4.setText("Browse");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4);
+        jButton4.setBounds(660, 280, 80, 20);
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField4);
+        jTextField4.setBounds(520, 250, 220, 30);
+
+        jLabel6.setText("Only JPEG Format");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(410, 270, 100, 20);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/corporate_01.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -131,6 +165,7 @@ public class UploadFrame extends javax.swing.JFrame {
         String VideoDescription = jTextArea1.getText();   
         String VideoPath = jTextField3.getText();
         String Destinationpath = "";
+        String ImagePath1 = jTextField4.getText();
         System.out.println(VideoName+"---"+VideoPath);
         
         
@@ -172,7 +207,7 @@ public class UploadFrame extends javax.swing.JFrame {
             
             //String Destinationpath = "D:\\Partition1\\SE_DATABASE\\Videos\\" + sourceFile.getName();
                 DBConnection objDB = new DBConnection();
-                int i = objDB.storeInDB(VideoName,VideoDescription,Destinationpathfinal);
+                int i = objDB.storeInDB(VideoName,VideoDescription,Destinationpathfinal,ImagePath1);
                 
                 if (i==1)
                 {
@@ -269,6 +304,37 @@ public class UploadFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+        JFileChooser filechooser = new JFileChooser();
+        int result = filechooser.showOpenDialog(this);
+        String res=null;
+        if(result == JFileChooser.APPROVE_OPTION)
+        {
+            ImagePath = filechooser.getSelectedFile().toString();
+
+        }
+        
+        else
+        {
+           
+            System.out.println("File Not Selected");
+        }
+       
+                 jTextField4.setVisible(true);
+                jTextField4.setText(ImagePath);
+                jTextField4.enable(false);
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
+
     
 
     /**
@@ -304,13 +370,17 @@ public class UploadFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
