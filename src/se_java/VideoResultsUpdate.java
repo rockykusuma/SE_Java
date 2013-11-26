@@ -282,12 +282,12 @@ public class VideoResultsUpdate extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         // TODO add your handling code here:
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
-        String d;
-        d = (String)dateFormat.format(date);
-
-        String FullString = "Uname"+"*"+jTextArea2.getText().toString()+"*"+jTextField1.getText().toString()+"*"+d;
+        //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        
+            final DateFormat timeFormat = new SimpleDateFormat("dd/MMM/yyyy    hh:mm:ss a");  
+            Date date = new Date(); 
+            String d = timeFormat.format(date); 
+            String FullString = "Uname"+"*"+jTextArea2.getText().toString()+"*"+jTextField1.getText().toString()+"*"+d;
 
         try
         {
@@ -301,7 +301,6 @@ public class VideoResultsUpdate extends javax.swing.JFrame {
                 temp+=sc.nextLine()+"\n";
                 temp+=FullString+"\n";
                 FileWriter f = new FileWriter(new File("write.txt"));
-                //FileOutputStream fop=new FileOutputStream("write.txt");
                 System.out.print (temp);
                 f.write(temp);
                 f.close();
@@ -367,7 +366,7 @@ public class VideoResultsUpdate extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        MediaPlayer.main(VideoPath);
+        MediaPlayer.main("file:///D:/SE_DATABASE/Videos/"+VideoPath);
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

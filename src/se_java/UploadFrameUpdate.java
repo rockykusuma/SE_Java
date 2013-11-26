@@ -134,7 +134,7 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 510, -1, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(915, 510, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton1.setText("Browse");
@@ -344,9 +344,9 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
                 String Temporary = extensiontemp[extensiontemp.length-1];
                 // String Temporary = sourceFile.getName().replace(Temporary, Temporary)
                 // File destinationFile = new File("D:\\SE_DATABASE\\Videos\\" + sourceFile.getName());
-                    File destinationFile = new File("D:\\SE_DATABASE\\Videos\\" + VideoName+"."+Temporary);
+                    File destinationFile = new File("C:\\SE_DATABASE\\Videos\\" + VideoName+"."+Temporary);
                         //Destinationpath = "D:\\Partition1\\SE_DATABASE\\Videos\\" + sourceFile.getName();
-                        Destinationpath = "D:\\SE_DATABASE\\Videos\\" + VideoName+"."+Temporary;
+                        Destinationpath = "C:\\SE_DATABASE\\Videos\\" + VideoName+"."+Temporary;
                         System.out.println("Source File---"+sourceFile.getName());
                         System.out.println("Destination File----"+destinationFile.getName()+"\n"+destinationFile);
 

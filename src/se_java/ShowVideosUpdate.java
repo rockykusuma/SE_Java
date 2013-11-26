@@ -6,30 +6,24 @@
 
 package se_java;
 
-import java.awt.BorderLayout;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JButton;
 
 /**
  *
  * @author Rakesh
  */
 public class ShowVideosUpdate extends javax.swing.JFrame {
-final java.util.List<JButton> buttons;
+//final java.util.List<JButton> buttons;
    
 
     /**
      * Creates new form ShowVideosUpdate
      */
+
+    public static Hashtable hashVideos;
+    public String video;
     
-    public ShowVideosUpdate( Hashtable  hash ) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException  
+    public ShowVideosUpdate()
     {  
         initComponents();
         
@@ -64,16 +58,37 @@ final java.util.List<JButton> buttons;
         
         jTextField1.setOpaque(false);        
 
-        
+        int j=0;
         System.out.println("Testing 123");
+        String [] array=new String[1000];
+         for ( int i = 1; i <= hashVideos.size(); i++ )  
+            { 
+                
+            //System.out.println(hashVideos.get(i));
+            String temp = (String) hashVideos.get(i);
+            String TempFinal = temp.substring(temp.indexOf("os/")+3);
+            //String Final = TempFinal.substring(i)
+            array[j]=TempFinal;
+                    j++;
+            }
+        
+        jList1.setListData(array);
+        
+            //   String temp = (String) hashVideos.get(1);
+              // String TempFinal;
+               //TempFinal = temp.substring(temp.indexOf("os/")+3);
+        
+        
+        // System.out.println("Rakesh Kusuma-------"+TempFinal);
+        
         //super("PCS Videos");   
     //    JFrame.setDefaultLookAndFeelDecorated(true);
         
       //  setDefaultCloseOperation( DISPOSE_ON_CLOSE );
-        setLocationRelativeTo(null);
-        int numberOfButtons = hash.size();
-        Container pane = getContentPane();
-        setLayout(new BorderLayout());
+//        setLocationRelativeTo(null);
+//        int numberOfButtons = hash.size();
+//        Container pane = getContentPane();
+//        setLayout(new BorderLayout());
        // JLabel background = new JLabel(new ImageIcon("‪C:\\Users\\Rakesh\\Desktop\\ron0a.jpg"));
         //add(background);
         
@@ -81,40 +96,42 @@ final java.util.List<JButton> buttons;
        // pane.
        
        
-       jLabel1.setLayout( new FlowLayout() );   
-        buttons = new ArrayList<>( numberOfButtons );                   
-        for ( int i = 1; i <= numberOfButtons; i++ )  
-        {  
-            System.out.println(hash.get(i));
-            String temp = (String) hash.get(i);
-            String TempFinal;
-            TempFinal = temp.substring(temp.indexOf("os/")+3);
-            //JButton button = new JButton( new SomeAction( "Video" , i ,hash)  );  
-            
-            JButton button = new JButton( new SomeAction( "" ,TempFinal)  );
-            
-            DBConnection image = new DBConnection();
-         //   image.GetImage();
-            
-          //  byte[] imagedata = image.GetImage((String) hash.get(i));
-            //java.awt.Image img = Toolkit.getDefaultToolkit().createImage(imagedata);
-       //     ImageIcon icon =new ImageIcon(img);
-//JLabel lPhoto = new JLabel(icon) ; 
-           // button.setIcon(icon);
-            button.setPreferredSize(new Dimension(100, 100));
-            jLabel1.add( button );  
-            // Remember buttons in collection, we might need to access them sometime  
-            buttons.add( button );  
-        }  
+//       jLabel1.setLayout( new FlowLayout() );   
+//        buttons = new ArrayList<>( numberOfButtons );                   
+//        for ( int i = 1; i <= numberOfButtons; i++ )  
+//        {  
+//            System.out.println(hash.get(i));
+//            String temp = (String) hash.get(i);
+//            String TempFinal;
+//            TempFinal = temp.substring(temp.indexOf("os/")+3);
+//            //JButton button = new JButton( new SomeAction( "Video" , i ,hash)  );  
+//            
+//            JButton button = new JButton( new SomeAction( "" ,TempFinal)  );
+//            
+//            DBConnection image = new DBConnection();
+//         //   image.GetImage();
+//            
+//          //  byte[] imagedata = image.GetImage((String) hash.get(i));
+//            //java.awt.Image img = Toolkit.getDefaultToolkit().createImage(imagedata);
+//       //     ImageIcon icon =new ImageIcon(img);
+////JLabel lPhoto = new JLabel(icon) ; 
+//           // button.setIcon(icon);
+//            button.setPreferredSize(new Dimension(100, 100));
+//            jLabel1.add( button );  
+//            // Remember buttons in collection, we might need to access them sometime  
+//            buttons.add( button );  
+//        }  
         
         
-        pack();  
+       // pack();  
+        
+        
+        
+        
+        
     }  
 
-    private ShowVideosUpdate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+  
   
     
 
@@ -135,6 +152,10 @@ final java.util.List<JButton> buttons;
         WatchVideosbtn = new javax.swing.JButton();
         Aboutbtn = new javax.swing.JButton();
         Homebtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -193,6 +214,29 @@ final java.util.List<JButton> buttons;
         });
         getContentPane().add(Homebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 90, 40));
 
+        jList1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jList1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jList1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 630, 270));
+
+        jLabel2.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        jLabel2.setText("    List of Videos");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 270, 180, -1));
+
+        jButton1.setText("Select");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 630, -1, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/BackgroundLogout2.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 770));
 
@@ -210,7 +254,7 @@ final java.util.List<JButton> buttons;
         System.out.println(hash1.get(0));
         System.out.println("size"+hash1.size());
         // SearchFrame.main(hash1);
-        ShowVideos.main(hash1);
+        ShowVideosUpdate.main(hash1);
     }//GEN-LAST:event_SearchbtnActionPerformed
 
     private void UploadbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UploadbtnActionPerformed
@@ -229,7 +273,7 @@ final java.util.List<JButton> buttons;
         int nob=0;
         System.out.println("size"+hashThumb.size());
 
-        ShowVideos.main(hashThumb);
+        ShowVideosUpdate.main(hashThumb);
     }//GEN-LAST:event_WatchVideosbtnActionPerformed
 
     private void AboutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutbtnActionPerformed
@@ -250,10 +294,22 @@ final java.util.List<JButton> buttons;
         LoginPage.main(null);
     }//GEN-LAST:event_LoginbtnActionPerformed
 
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        // TODO add your handling code here:
+        
+        video =jList1.getSelectedValue().toString();
+        
+    }//GEN-LAST:event_jList1ValueChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        VideoResultsUpdate.main(video,video);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(final Hashtable  hash) {
+    public static void main(Hashtable hashh) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -267,30 +323,20 @@ final java.util.List<JButton> buttons;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ShowVideosUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomePageUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ShowVideosUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomePageUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ShowVideosUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomePageUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ShowVideosUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomePageUpdate.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+         hashVideos = hashh;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    new ShowVideosUpdate(hash).setVisible(true);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ShowVideosUpdate.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InstantiationException ex) {
-                    Logger.getLogger(ShowVideosUpdate.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalAccessException ex) {
-                    Logger.getLogger(ShowVideosUpdate.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ShowVideosUpdate.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new ShowVideosUpdate().setVisible(true);
             }
         });
     }
@@ -303,7 +349,11 @@ final java.util.List<JButton> buttons;
     private javax.swing.JButton Searchbtn;
     private javax.swing.JButton Uploadbtn;
     private javax.swing.JButton WatchVideosbtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JList jList1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
