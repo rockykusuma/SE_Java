@@ -10,14 +10,11 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.image.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 /**
@@ -123,7 +120,7 @@ public class ShowVideos extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/corporate_law.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 750, 450);
+        jLabel1.setBounds(0, -10, 750, 470);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

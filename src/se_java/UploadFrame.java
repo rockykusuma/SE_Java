@@ -123,7 +123,7 @@ public class UploadFrame extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jLabel5.setText("ThumbNail Image");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(400, 260, 110, 15);
+        jLabel5.setBounds(400, 260, 110, 20);
 
         jButton4.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton4.setText("Browse");

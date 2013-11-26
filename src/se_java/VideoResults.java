@@ -212,17 +212,6 @@ public class VideoResults extends javax.swing.JFrame {
         }
                   
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
 //        try 
 //        {  
 //            
