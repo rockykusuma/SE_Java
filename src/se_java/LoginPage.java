@@ -128,10 +128,7 @@ public class LoginPage extends javax.swing.JFrame {
                         LoginPage.main(null); 
                      
                     }
-             
-             
-            
-             
+      
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

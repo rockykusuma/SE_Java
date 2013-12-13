@@ -207,12 +207,12 @@ public class UploadFrame extends javax.swing.JFrame {
             
             //String Destinationpath = "D:\\Partition1\\SE_DATABASE\\Videos\\" + sourceFile.getName();
                 DBConnection objDB = new DBConnection();
-                int i = objDB.storeInDB(VideoName,VideoDescription,Destinationpathfinal,ImagePath1);
+                //int i = objDB.storeInDB(VideoName,VideoDescription,Destinationpathfinal,ImagePath1);
                 
-                if (i==1)
-                {
-                    JOptionPane.showMessageDialog(null, "Uploaded Succesfully");
-                }
+//                if (i==1)
+//                {
+//                    JOptionPane.showMessageDialog(null, "Uploaded Succesfully");
+//                }
 
             //System.out.println(Destinationpathfinal);
             //System.out.println(VideoDescription);

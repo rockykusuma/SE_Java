@@ -8,45 +8,49 @@ package UploadTransfer;
 
 /**
  *
- * @author veerendra
+
  */
 import java.net.*;
 import java.io.*;
+import org.apache.commons.io.IOUtils;
 
 public class GreetingClient
 {
+    public static void stream(InputStream in, OutputStream out)
+        throws IOException {
+    byte[] buf = new byte[1024];
+    int bytesRead = 0;
+
+    try {
+
+        while (-1 != (bytesRead = in.read(buf, 0, buf.length))) {
+            out.write(buf, 0, bytesRead);
+        }
+
+    } catch (IOException e) {
+//        log.error("Error with streaming op: " + e.getMessage());
+        throw (e);
+    } finally {
+                    try{
+           in.close();
+           out.flush();
+           out.close();
+                    } catch (Exception e){}//Ignore
+    }
+}
    public static void main(String [] args)
    {
       String serverName = "127.0.0.1";
-      int port = Integer.parseInt("4444");
+      int port = Integer.parseInt("4445");
       try
       {
-         System.out.println("Connecting to " + serverName
-                             + " on port " + port);
+         System.out.println("Connecting to " + serverName + " on port " + port);
          Socket client = new Socket(serverName, port);
          
-         long filesize=2022386000;
-        int bytesRead;
-        int currentTot = 0;
-         byte [] bytearray  = new byte [filesize];
-        InputStream is = client.getInputStream();
-        FileOutputStream fos = new FileOutputStream("a.mp3");
-        BufferedOutputStream bos = new BufferedOutputStream(fos);
-        
-        bytesRead = is.read(bytearray,0,bytearray.length);
-        currentTot = bytesRead;
- 
-        do {
-           bytesRead =
-              is.read(bytearray, currentTot, (bytearray.length-currentTot));
-           if(bytesRead >= 0) currentTot += bytesRead;
-        } while(bytesRead > -1);
-        
-        bos.write(bytearray, 0 , currentTot);
-        bos.flush();
-        bos.close();
-        
-         
+         OutputStream os = client.getOutputStream();
+         InputStream is = new FileInputStream(new File("‪D:\\v\\java.mp4"));
+          stream(is, os);
+          
          client.close();
       }catch(IOException e)
       {

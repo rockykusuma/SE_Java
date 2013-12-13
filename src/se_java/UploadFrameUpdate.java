@@ -28,7 +28,7 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
     public UploadFrameUpdate() {
         initComponents();
         jTextField3.setVisible(false);
-        jTextField4.setVisible(false);
+
         
         
            Homebtn.setOpaque(false);
@@ -77,9 +77,6 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
@@ -116,26 +113,6 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 370, 340, 90));
 
-        jLabel5.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
-        jLabel5.setText("ThumbNail Image");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 470, -1, -1));
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 480, 340, 20));
-
-        jButton4.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
-        jButton4.setText("Browse");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(915, 510, -1, -1));
-
         jButton1.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton1.setText("Browse");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -143,14 +120,14 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 600, 80, 20));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 580, 80, 20));
 
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 560, 340, 30));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 510, 340, 60));
 
         jButton2.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jButton2.setText("Upload");
@@ -163,7 +140,7 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         jLabel6.setText("File location");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 570, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 540, -1, 30));
 
         Homebtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         Homebtn.addActionListener(new java.awt.event.ActionListener() {
@@ -227,34 +204,6 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-
-        JFileChooser filechooser = new JFileChooser();
-        int result = filechooser.showOpenDialog(this);
-        String res=null;
-        if(result == JFileChooser.APPROVE_OPTION)
-        {
-            ImagePath = filechooser.getSelectedFile().toString();
-
-        }
-
-        else
-        {
-
-            System.out.println("File Not Selected");
-        }
-
-        jTextField4.setVisible(true);
-        jTextField4.setText(ImagePath);
-        jTextField4.enable(false);
-
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -326,7 +275,7 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
         String VideoDescription = jTextArea1.getText();
         String VideoPath = jTextField3.getText();
         String Destinationpath = "";
-        String ImagePath1 = jTextField4.getText();
+        //String ImagePath1 = jTextField4.getText();
         System.out.println(VideoName+"---"+VideoPath);
 
         if(VideoName.contentEquals("")|| VideoDescription.contentEquals("")|| VideoPath.contentEquals(""))
@@ -367,7 +316,7 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
 
                         //String Destinationpath = "D:\\Partition1\\SE_DATABASE\\Videos\\" + sourceFile.getName();
                         DBConnection objDB = new DBConnection();
-                        int i = objDB.storeInDB(VideoName,VideoDescription,Destinationpathfinal,ImagePath1);
+                        int i = objDB.storeInDB(VideoName,VideoDescription,Destinationpathfinal);
 
                         if (i==1)
                         {
@@ -483,18 +432,15 @@ public class UploadFrameUpdate extends javax.swing.JFrame {
     private javax.swing.JButton WatchVideosbtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,9 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package se_java;
 
 import com.mysql.jdbc.Connection;
@@ -11,24 +13,24 @@ import java.sql.Blob;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import static se_java.HomePageUpdate.loginName;
 
 /**
  *
  * @author Rakesh
  */
-public class DBConnection {
+public class DBConnectionServer {
     
-        Connection conn = null;
-        String url = "jdbc:mysql://127.0.0.1:3306/";
-        String dbName = "PCS";
+    
+      Connection conn = null;
+        String url = "jdbc:mysql://192.168.7.145:3306/";
+        String dbName = "se";
         String driver = "com.mysql.jdbc.Driver";
-        String userName = "rakesh"; 
-        String password = "rakesh";
+        String userName = "sashank"; 
+        String password = "sashank";
         
        
      public  boolean DBConnection()
@@ -42,7 +44,8 @@ public class DBConnection {
 
                 Statement stmd = (Statement) conn.createStatement();
                 stmd.execute ("select 1 from dual");
-            System.out.println("kjsgfkja");    
+            System.out.println("kjsgfkja");
+            
 
             }
             catch(Exception e)
@@ -53,7 +56,7 @@ public class DBConnection {
         return true;
     }
     
-    public int storeInDB (String videoName,String videoDescription,String videoPath) 
+    public int storeInDB (String videoName,String videoDescription,String videoPath,String imagePath) 
     {
         
         System.out.print( "\n\nGot Here..!!\n\n" );
@@ -67,20 +70,13 @@ public class DBConnection {
                 Statement stmd = (Statement) conn.createStatement();
                 
              
-                //FileInputStream fin = new FileInputStream(imagePath);
-                String command = "CREATE TABLE IF NOT EXISTS FILE_PATHS(F_NAME VARCHAR(50) PRIMARY KEY, F_PATH VARCHAR(100), DESCRIPTION VARCHAR(100))";
+                FileInputStream fin = new FileInputStream(imagePath);
+                String command = "CREATE TABLE IF NOT EXISTS FILE_PATHS(F_NAME VARCHAR(50) PRIMARY KEY, F_PATH VARCHAR(100), DESCRIPTION VARCHAR(100), IMAGE BLOB)";
                 
                 stmd.execute (command);
 
-                command = command = "insert into FILE_PATHS values('"+videoName+"', '" + videoPath + "','"+videoDescription+"')" ;
-                
-               
-		
+                command = command = "insert into FILE_PATHS values('"+videoName+"', '" + videoPath + "','"+videoDescription+"','"+fin+"')" ;
 
-		//int result = stmd.executeUpdate();
-		//System.out.println(result + " Record Successfully Inserted");
-
-                
                 stmd.execute (command);
 
                 conn.close();
@@ -174,29 +170,77 @@ public class DBConnection {
          
     }
 
+  public void StoreinComment(String discussionString) throws ClassNotFoundException, SQLException {
+
+        System.out.println(discussionString);
+        String Array[] = discussionString.split("_");
+        System.out.println("Void QWertyyy ZERO Step");
+        int videoid =Integer.parseInt(Array[0]);
+        String Name = Array[1];
+        //String Name = loginName;
+        String body = Array[2];
+        
+        String Date = Array[3];
+        System.out.println(Array[0]+""+Array[1]+""+Array[2]);
+          try {
+              System.out.println("Void QWertyyy First Step");
+                Class.forName(driver).newInstance();                  
+                conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
+                Statement stmd = (Statement) conn.createStatement();  
+                System.out.println("Void QWertyyy Second Step");
+                String command = "CREATE TABLE IF NOT EXISTS COMMENTS(id int auto_increment, name VARCHAR(100), body VARCHAR(200), video int, dt VARCHAR(50))";
+                System.out.println("Void QWertyyy Third Step");
+                stmd.execute (command);
+                System.out.println("Void QWertyyy Fourth Step");
+               // command = command = "INSERT INTO FORUM VALUES(3,'rakesh','question by rakesh','',null)" ;
+                command = "INSERT INTO COMMENTS VALUES('" + Name+ "','"+body+"','"+videoid+"','"+Date+"');" ;
+                System.out.println(command);
+                System.out.println("\nVoid QWertyyy Fifth Step");
+                stmd.execute (command);
+                System.out.println("Void QWertyyy Sixth Step");
+                conn.close();
+                
+    }
+    
+    catch (    InstantiationException | IllegalAccessException ex) 
+    {
+                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        
+    }
+    
+    
+    
     public void StoreinForum(String discussionString) throws  SQLException, ClassNotFoundException 
     {
-        String Array[] = discussionString.split("*");
         
-        
+        System.out.println("Void QWertyyy");
+        System.out.println(discussionString);
+        String Array[] = discussionString.split("_");
+        System.out.println("Void QWertyyy ZERO Step");
+        int id =Integer.parseInt(Array[0]);
+        String Name = Array[1];
+        //String Name = loginName;
+        String Question = Array[2];
+        String Answer = "";
+        String Date = Array[3];
+        System.out.println(Array[0]+""+Array[1]+""+Array[2]);
           try {
-                Class.forName(driver).newInstance();
-                   
+              System.out.println("Void QWertyyy First Step");
+                Class.forName(driver).newInstance();                  
                 conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
-
-                Statement stmd = (Statement) conn.createStatement();
-                
-                
-                
-               String command = "CREATE TABLE IF NOT EXISTS DISCFORUM(U_NAME VARCHAR(50), POST VARCHAR(200), V_NAME VARCHAR(100), DATE VARCHAR(100))";
-                
+                Statement stmd = (Statement) conn.createStatement();  
+                System.out.println("Void QWertyyy Second Step");
+                String command = "CREATE TABLE IF NOT EXISTS FORUM(video int, name VARCHAR(100), question VARCHAR(200), answer VARCHAR(500), dt VARCHAR(50))";
+                System.out.println("Void QWertyyy Third Step");
                 stmd.execute (command);
-
-                command = command = "INSERT INTO DISCFORUM VALUES('"+Array[0]+"', '" + Array[1] + "','"+Array[2]+"','"+Array[3]+"')" ;
-
-                
+                System.out.println("Void QWertyyy Fourth Step");
+                command = "INSERT INTO FORUM VALUES("+id+", '" + Name+ "','"+Question+"','"+Answer+"','"+Date+"');" ;
+                System.out.println(command);
+                System.out.println("\nVoid QWertyyy Fifth Step");
                 stmd.execute (command);
-
+                System.out.println("Void QWertyyy Sixth Step");
                 conn.close();
                 
     }
@@ -259,132 +303,5 @@ public class DBConnection {
         
     }
 
-    public void DiscussionForum(String uName, String Post, String VName, String date) throws ClassNotFoundException, SQLException {
-       
     
-    try {
-                Class.forName(driver).newInstance();
-                   
-                conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
-
-                Statement stmd = (Statement) conn.createStatement();
-                
-                
-                
-               String command = "CREATE TABLE IF NOT EXISTS DISCFORUM(U_NAME VARCHAR(50), POST VARCHAR(200), V_NAME VARCHAR(100), DATE VARCHAR(100))";
-                
-                stmd.execute (command);
-
-                command = command = "INSERT INTO DISCFORUM VALUES('"+uName+"', '" + Post + "','"+VName+"','"+date+"')" ;
-
-                
-                stmd.execute (command);
-
-                conn.close();
-                
-    }
-    
-    catch (    InstantiationException | IllegalAccessException ex) 
-    {
-                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-        
-        
-    }
-    
-    
-  public void Comment(String uName, String Comment, String VName, String date) throws ClassNotFoundException, SQLException {
-       
-    
-    try {
-                Class.forName(driver).newInstance();
-                   
-                conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
-
-                Statement stmd = (Statement) conn.createStatement();
-                
-                
-                
-               String command = "CREATE TABLE IF NOT EXISTS COMMENT(U_NAME VARCHAR(50), COMMENT VARCHAR(200), V_NAME VARCHAR(100), DATE VARCHAR(100))";
-                
-                stmd.execute (command);
-
-                command = command = "INSERT INTO DISCFORUM VALUES('"+uName+"', '" + Comment + "','"+VName+"','"+date+"')" ;
-
-                
-                stmd.execute (command);
-
-                conn.close();
-                
-    }
-    
-    catch (    InstantiationException | IllegalAccessException ex) 
-    {
-                Logger.getLogger(DBConnection.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-        
-        
-    }
-
- public int loginVerification(String login, String pwd) 
-    {
-        System.out.println("Login---");
-        String path=null;
-        try{
-                Class.forName(driver).newInstance();
-                System.out.println("Testing 2");
-                conn = (Connection) DriverManager.getConnection(url+dbName,userName,password);
-
-                Statement stmd = (Statement) conn.createStatement();
-                
-                ResultSet rs1;
-              
-                rs1 = stmd.executeQuery("SELECT * FROM REGISTRATION");
-                  System.out.println("Testing abcd");
-                ArrayList db_username=new ArrayList();
-                ArrayList db_password=new ArrayList();
-                while(rs1.next())
-                {
-                    System.out.println("Testing 3");
-                    db_username.add(rs1.getString("uname"));
-                    db_password.add(rs1.getString("pwd"));
-
-                }
-        System.out.println(login+pwd);
-        if (db_username.contains(login))
-        {
-            //System.out.println("login found");
-            int a= db_username.indexOf(login);
-            //System.out.println(a);
-            //System.out.println(db_password.get(a));
-            if (db_password.get(a).equals(pwd))
-            {
-                //System.out.println("Login Successful");
-                return 0;
-               // HomePage.main();
-                
-            }
-            else
-            {
-                //password didn't match Username
-                //JOptionPane.showMessageDialog(null,"Password didn't match with username");
-                
-                return 3;
-            }
-        }
-        else
-        {
-            //Username not found in database
-//            JOptionPane.showMessageDialog(null,"Username not found.");
-            return 2;
-        }
-        }
-        catch(Exception e)
-        {
-            
-        }
-            return 4;
-    }
 }

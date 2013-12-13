@@ -6,7 +6,10 @@
 
 package se_java;
 
+import java.io.IOException;
 import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -82,7 +85,7 @@ public class ShowVideosUpdate extends javax.swing.JFrame {
         // System.out.println("Rakesh Kusuma-------"+TempFinal);
         
         //super("PCS Videos");   
-    //    JFrame.setDefaultLookAndFeelDecorated(true);
+    //    JFrame.setDefaultLookAndFeelDecorated(true); 
         
       //  setDefaultCloseOperation( DISPOSE_ON_CLOSE );
 //        setLocationRelativeTo(null);
@@ -303,7 +306,14 @@ public class ShowVideosUpdate extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        VideoResultsUpdate.main(video,video);
+         this.setVisible(false);
+        try {
+            FileWrite.main(video);
+        } catch (IOException ex) {
+            Logger.getLogger(ShowVideosUpdate.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+        //VideoResultsUpdate.main(video,video);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
