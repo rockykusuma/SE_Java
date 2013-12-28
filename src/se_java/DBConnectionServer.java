@@ -26,7 +26,7 @@ public class DBConnectionServer {
     
     
       Connection conn = null;
-        String url = "jdbc:mysql://192.168.7.145:3306/";
+        String url = "jdbc:mysql://172.16.5.153:3306/";
         String dbName = "se";
         String driver = "com.mysql.jdbc.Driver";
         String userName = "sashank"; 
@@ -219,7 +219,9 @@ public class DBConnectionServer {
         System.out.println(discussionString);
         String Array[] = discussionString.split("_");
         System.out.println("Void QWertyyy ZERO Step");
-        int id =Integer.parseInt(Array[0]);
+        //int id =Integer.parseInt(Array[0]);
+        int id = 0;
+       
         String Name = Array[1];
         //String Name = loginName;
         String Question = Array[2];

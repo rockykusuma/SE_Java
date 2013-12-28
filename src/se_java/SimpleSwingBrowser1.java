@@ -8,11 +8,8 @@ import javafx.embed.swing.JFXPanel;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebEvent;
 import javafx.scene.web.WebView;
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -20,18 +17,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static javafx.concurrent.Worker.State.FAILED;
 import static se_java.HomePageUpdate.loginName;
 
@@ -102,6 +92,8 @@ public class SimpleSwingBrowser1 extends JFrame {
 //        jButton3.setOpaque(false);
 //        jButton3.setContentAreaFilled(false);
 //        jButton3.setBorderPainted(false);
+        
+        //jTextField2.setText(VideoName1);
        
     }
 
@@ -130,7 +122,7 @@ public class SimpleSwingBrowser1 extends JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-//        jPanel1 = new javax.swing.JPanel();
+//      jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -316,7 +308,8 @@ public class SimpleSwingBrowser1 extends JFrame {
 
     }                                           
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) 
+    {                                         
 
         // TODO add your handling code here:
         //DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -325,8 +318,9 @@ public class SimpleSwingBrowser1 extends JFrame {
             Date date = new Date(); 
             String d = timeFormat.format(date); 
             String Name = jTextField2.getText();
+            System.out.println("Rakesh Kusuma----"+Name);
             int id=0;
-            if(Name.contains("Java"))
+            if(Name.contains("JAVA"))
             {
                 id = 2;
             }
@@ -498,7 +492,7 @@ public class SimpleSwingBrowser1 extends JFrame {
         Platform.runLater(new Runnable() {
             
             public void run() {
-
+                jTextField2.setText(VideoName1);
                 WebView view = new WebView();
                 engine = view.getEngine();
                 engine.getLoadWorker()
@@ -554,7 +548,7 @@ public class SimpleSwingBrowser1 extends JFrame {
     }
     public static void changeVideoname(String videoname) throws IOException
     {
-        BufferedWriter writer = new BufferedWriter(new FileWriter("C:/SE_DATABASE/Videos/abc.html")); //you don't need to create a File object, FileWriter takes a string for the filepath as well
+        BufferedWriter writer = new BufferedWriter(new FileWriter("E:/SE_DATABASE/Videos/abc.html")); //you don't need to create a File object, FileWriter takes a string for the filepath as well
         writer.write("Student number...1"); 
         writer.write(videoname);
        
@@ -569,7 +563,7 @@ public class SimpleSwingBrowser1 extends JFrame {
             public void run() {
                 
                 browser.setVisible(true);
-                browser.loadURL("file:///C:/SE_DATABASE/Videos/abc.html");
+                browser.loadURL("file:///E:/SE_DATABASE/Videos/abc.html");
             }
         });
     }

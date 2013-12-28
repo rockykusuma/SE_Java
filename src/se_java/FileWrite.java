@@ -21,7 +21,7 @@ class FileWrite
 public static void main(String videoName)throws IOException 
 {
 try{
-   FileOutputStream f=new FileOutputStream("C:\\SE_DATABASE\\Videos\\abc.html");
+   FileOutputStream f=new FileOutputStream("E:\\SE_DATABASE\\Videos\\abc.html");
     try (PrintStream p = new PrintStream(f)) {
         p.println("<html><body><video id=myvideo controls><source src="+videoName+" type=video/mp4></video></body></html>");
     }

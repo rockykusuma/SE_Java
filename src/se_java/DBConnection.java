@@ -25,10 +25,10 @@ public class DBConnection {
     
         Connection conn = null;
         String url = "jdbc:mysql://127.0.0.1:3306/";
-        String dbName = "PCS";
+        String dbName = "se";
         String driver = "com.mysql.jdbc.Driver";
-        String userName = "rakesh"; 
-        String password = "rakesh";
+        String userName = "sashank"; 
+        String password = "sashank";
         
        
      public  boolean DBConnection()
@@ -341,7 +341,7 @@ public class DBConnection {
                 
                 ResultSet rs1;
               
-                rs1 = stmd.executeQuery("SELECT * FROM REGISTRATION");
+                rs1 = stmd.executeQuery("SELECT * FROM USER");
                   System.out.println("Testing abcd");
                 ArrayList db_username=new ArrayList();
                 ArrayList db_password=new ArrayList();
@@ -349,7 +349,7 @@ public class DBConnection {
                 {
                     System.out.println("Testing 3");
                     db_username.add(rs1.getString("uname"));
-                    db_password.add(rs1.getString("pwd"));
+                    db_password.add(rs1.getString("password"));
 
                 }
         System.out.println(login+pwd);

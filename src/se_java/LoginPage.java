@@ -67,6 +67,11 @@ public class LoginPage extends javax.swing.JFrame {
 
         jPasswordField1.setFont(new java.awt.Font("Cambria", 1, 18)); // NOI18N
         jPasswordField1.setText("qwerty");
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 390, 170, 40));
 
         jRadioButton1.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
@@ -136,6 +141,10 @@ public class LoginPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         isRememberMe=true;
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
     /**
      * @param args the command line arguments
